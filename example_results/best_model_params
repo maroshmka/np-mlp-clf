@@ -1,0 +1,1 @@
+{"score": {"acc": 0.0075, "rmse": 0.015}, "params": {"L1": null, "L2": null, "alpha": 0.3, "eps": 500, "mini_batch_size": 1, "out_function": "logsig", "hid_function": "logsig", "dim_hid": 30}}
