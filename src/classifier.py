@@ -1,5 +1,10 @@
-from mlp import *
-from util import *
+import random
+
+import numpy as np
+
+from src import func
+from src.mlp import MLP
+from src.util import onehot_decode, onehot_encode
 
 
 class MLPClassifier(MLP):

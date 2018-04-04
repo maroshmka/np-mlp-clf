@@ -1,9 +1,6 @@
-import func
-from util import *
+from src import func
+from src.util import *
 
-
-# Multi-Layer Perceptron
-# (abstract base class)
 
 class MLP:
     def __init__(self, dim_in, dim_out, dim_hid=20, mini_batch_size=1, eps=100, alpha=0.1,

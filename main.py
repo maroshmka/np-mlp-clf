@@ -1,15 +1,19 @@
 import argparse
 import json
+import os
 import time
 
-from classifier import *
-from grid_search import GridSearch
-from visualize import *
+import numpy as np
+
+from src.classifier import MLPClassifier
+from src.grid_search import GridSearch
+from src.util import normalize, split_train_test, load_data, save_confusion_matrix
+from src.visualize import plot_both_errors, plot_dots
 
 
 def load_iris():
     # load data
-    data = np.loadtxt('iris.dat').T
+    data = np.loadtxt('data/iris.dat').T
     inputs = data[:-1]
     labels = data[-1].astype(int) - 1
 
@@ -21,8 +25,8 @@ def load_iris():
 
 def load_2d():
     # load data
-    train_inputs, train_labels = load_data('2d.trn.dat')
-    test_inputs, test_labels = load_data('2d.tst.dat')
+    train_inputs, train_labels = load_data('data/2d.trn.dat')
+    test_inputs, test_labels = load_data('data/2d.tst.dat')
 
     # normalize inputs
     train_inputs = normalize(train_inputs)
@@ -57,6 +61,8 @@ def select_model(train_inputs, train_labels, dim, n_classes):
 def run(train_inputs, train_labels, test_inputs, test_labels, grid_search):
     dim, count = train_inputs.shape
     n_classes = np.max(train_labels) + 1
+    if not os.path.isdir('results'):
+        os.mkdir('results')
 
     #
     # model selection
